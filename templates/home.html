@@ -29,7 +29,7 @@
             justify-content: space-between;        
             align-items: center;
             width: 100%;
-            padding: 20px 60px; /* 20px top/bottom, 60px left/right pushes items cleanly away from screen edges */
+            padding: 20px 60px; /* Base desktop padding */
         }
 
         .nav-logo a {
@@ -48,7 +48,7 @@
         .nav-menu {
             display: flex;
             list-style: none;                      
-            gap: 30px; /* Increased from 20px to spread items out naturally */
+            gap: 30px; 
         }
 
         .nav-menu li a {
@@ -97,6 +97,29 @@
         .about-box p {
             margin-bottom: 12px;
             line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column; /* Stack logo on top, menu items below */
+                gap: 15px;
+                padding: 15px 20px;     /* Shrink tight desktop padding so it fits screens */
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;        /* Allows items to break nicely to a new row if needed */
+                justify-content: center;
+                gap: 15px;              /* Bring menu tags slightly closer together on small screens */
+            }
+
+            .nav-menu li a {
+                font-size: 14px;        /* Slightly smaller text for phone layouts */
+            }
+
+            .about-box {
+                margin: 200px 20px 40px 20px; /* Adds 20px margins on the left/right edges of phones */
+                padding: 20px;
+            }
         }
     </style>
 </head>

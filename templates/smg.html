@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Submachine Guns</title>
+    <title>Submachine Gun</title>
 
     <style>
         * {
@@ -29,7 +29,7 @@
             justify-content: space-between;        
             align-items: center;
             width: 100%;
-            padding: 20px 60px; /* 20px top/bottom, 60px left/right pushes items cleanly away from screen edges */
+            padding: 20px 60px; /* Desktop spacing */
         }
 
         .nav-logo a {
@@ -48,7 +48,7 @@
         .nav-menu {
             display: flex;
             list-style: none;                      
-            gap: 30px; /* Increased from 20px to spread items out naturally */
+            gap: 30px; 
         }
 
         .nav-menu li a {
@@ -75,6 +75,24 @@
             top: 0;
             left: 0;
             z-index: -1;                  
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;    
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;        
+                justify-content: center;
+                gap: 15px;            
+            }
+
+            .nav-menu li a {
+                font-size: 14px;       
+            }
         }
     </style>
 </head>
