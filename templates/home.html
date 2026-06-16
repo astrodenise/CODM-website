@@ -5,6 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Denn's Attachment</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .header {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.85); 
+            position: fixed;                       
+            top: 0;
+            left: 0;
+            z-index: 1000;                         
+            border-bottom: 2px solid #f39c12;      
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;        
+            align-items: center;
+            width: 100%;
+            padding: 20px 60px; /* 20px top/bottom, 60px left/right pushes items cleanly away from screen edges */
+        }
+
+        .nav-logo h1 {
+            color: #fff;
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;                      
+            gap: 30px; /* Increased from 20px to spread items out naturally */
+        }
+
+        .nav-menu li a {
+            color: #ccc;
+            text-decoration: none;                 
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu li a:hover {
+            color: #f39c12;                        
+        }
+
+        .bg {
+            background-image: url('static/background.jpg'); 
+            background-size: cover;       
+            background-position: center;  
+            background-repeat: no-repeat; 
+            width: 100%;
+            height: 100vh;                
+            position: fixed;               
+            top: 0;
+            left: 0;
+            z-index: -1;                  
+        }
+        
+        .about-box {
+            position: relative;
+            max-width: 600px;
+            margin: 160px auto 40px auto; 
+            background: rgba(0, 0, 0, 0.75);
+            color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 5px solid #f39c12; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .about-box h2 {
+            margin-bottom: 15px;
+            color: #f39c12;
+        }
+
+        .about-box p {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+    </style>
 </head>
 <body>
 
@@ -21,7 +109,7 @@
                 <li><a href="/sr">SR</a></li>
                 <li><a href="/lmg">LMG</a></li>
                 <li><a href="/mm">MM</a></li>
-                <li><a href="">PISTOL</a></li>
+                <li><a href="/pistol">PISTOL</a></li>
             </ul>
         </div>
     </div>
@@ -31,12 +119,11 @@
     <div class="about-box">
         <h2>Hi, I'm DENNCODM!</h2>
         <p>Welcome to my website! Here, you'll find all the gun attachments I use to dominate in CODM. If you like it, 
-    don't forget to follow me on TikTok @denncodmm for more gameplay and codm memes.</p>
+        don't forget to follow me on TikTok @denncodmm for more gameplay and codm memes.</p>
 
-    <p>IGN: SV Denbie</p>
-    <p>UID: 6833032126602936321</p>
+        <p><strong>IGN:</strong> SV Denbie</p>
+        <p><strong>UID:</strong> 6833032126602936321</p>
     </div>
-</div>
     
 </body>
 </html>
