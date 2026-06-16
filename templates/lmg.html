@@ -29,7 +29,7 @@
             justify-content: space-between;        
             align-items: center;
             width: 100%;
-            padding: 20px 60px; /* Desktop spacing */
+            padding: 20px 60px; 
         }
 
         .nav-logo a {
@@ -65,7 +65,7 @@
         }
 
         .bg {
-            background-image: url('static/background.jpg'); 
+            background-image: url("{{ url_for('static', filename='background.jpg') }}"); 
             background-size: cover;       
             background-position: center;  
             background-repeat: no-repeat; 
@@ -77,21 +77,148 @@
             z-index: -1;                  
         }
 
+        .main-content {
+            max-width: 1400px; 
+            margin: 160px auto 60px auto; 
+            padding: 0 40px;
+            text-align: center;
+        }
+
+        .page-title {
+            color: #fff;
+            font-size: 48px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 40px;
+            text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.9);
+        }
+
+        .weapons-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px; 
+        }
+
+        .weapon-card-clicker {
+            background: rgba(0, 0, 0, 0.75); 
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 20px; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer; 
+            user-select: none;
+        }
+
+        .weapon-card-clicker:hover {
+            transform: translateY(-8px); 
+            border-color: #f39c12; 
+            box-shadow: 0 15px 30px rgba(243, 156, 18, 0.2);
+        }
+
+        .weapon-img-wrapper {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden; 
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.03); 
+        }
+
+        .weapon-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain; 
+        }
+
+        .weapon-name {
+            color: #fff;
+            font-size: 20px; 
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95); 
+            z-index: 2000;                        
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;                 
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox-overlay.active {
+            opacity: 1;
+            pointer-events: auto;                 
+        }
+
+        .lightbox-img {
+            max-width: 95%;       
+            max-height: 90vh;      
+            width: auto;           
+            height: auto;          
+            border: 3px solid #f39c12;            
+            box-shadow: 0 0 40px rgba(243, 156, 18, 0.5); 
+            border-radius: 12px;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+            cursor: pointer;                    
+        }
+
+        .lightbox-overlay.active .lightbox-img {
+            transform: scale(1);                  
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 50px; 
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+            z-index: 2001;   
+        }
+
+        .lightbox-close:hover {
+            color: #f39c12;
+        }
+
+        @media (max-width: 1100px) {
+            .weapons-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
                 gap: 15px;
-                padding: 15px 20px;    
+                padding: 15px 20px;     
             }
-
             .nav-menu {
                 flex-wrap: wrap;        
                 justify-content: center;
-                gap: 15px;            
+                gap: 15px;              
             }
-
-            .nav-menu li a {
-                font-size: 14px;       
+            .main-content {
+                margin-top: 200px; 
+            }
+            .weapons-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -117,6 +244,55 @@
     </div>
 
     <div class="bg"></div>
+
+    <div class="main-content">
+        <h2 class="page-title">Light Machine Guns</h2>
+
+        <div class="weapons-grid">
+            
+            <div class="weapon-card-clicker">
+                <div class="weapon-img-wrapper">
+                    <img src="{{ url_for('static', filename='chopper.PNG') }}" alt="Chopper" class="weapon-img">
+                </div>
+                <div class="weapon-name">Chopper</div>
+            </div>
+
+            <div class="weapon-card-clicker">
+                <div class="weapon-img-wrapper">
+                    <img src="{{ url_for('static', filename='dp27.PNG') }}" alt="DP27" class="weapon-img">
+                </div>
+                <div class="weapon-name">DP27</div>
+            </div>
+
+    <div class="lightbox-overlay" id="lightbox">
+        <span class="lightbox-close" id="lightbox-close">&times;</span>
+        <img class="lightbox-img" id="lightbox-img" src="" alt="Enlarged view">
+    </div>
+
+    <script>
+        const weaponCards = document.querySelectorAll('.weapon-card-clicker');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.getElementById('lightbox-close');
+
+        weaponCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const clickedImgSrc = card.querySelector('.weapon-img').src;
+                lightboxImg.src = clickedImgSrc; 
+                lightbox.classList.add('active');
+            });
+        });
+
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target !== lightboxClose) {
+                lightbox.classList.remove('active');
+            }
+        });
+    </script>
     
 </body>
 </html>
