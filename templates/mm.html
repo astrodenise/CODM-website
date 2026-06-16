@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Marksman</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .header {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.85); 
+            position: fixed;                       
+            top: 0;
+            left: 0;
+            z-index: 1000;                         
+            border-bottom: 2px solid #f39c12;      
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;        
+            align-items: center;
+            width: 100%;
+            padding: 20px 60px; /* 20px top/bottom, 60px left/right pushes items cleanly away from screen edges */
+        }
+
+        .nav-logo a {
+            color: #ccc;
+            text-decoration: none;                 
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: color 0.3s ease;   
+        }
+
+        .nav-logo a:hover {
+            color: #f39c12;                        
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;                      
+            gap: 30px; /* Increased from 20px to spread items out naturally */
+        }
+
+        .nav-menu li a {
+            color: #ccc;
+            text-decoration: none;                 
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu li a:hover {
+            color: #f39c12;                        
+        }
+
+        .bg {
+            background-image: url('static/background.jpg'); 
+            background-size: cover;       
+            background-position: center;  
+            background-repeat: no-repeat; 
+            width: 100%;
+            height: 100vh;                
+            position: fixed;               
+            top: 0;
+            left: 0;
+            z-index: -1;                  
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="navbar">
+            <div class="nav-logo">
+                <a href="/"><h1>DENNCODM</h1></a>
+            </div>
+    
+            <ul class="nav-menu">
+                <li><a href="/ar">AR</a></li>
+                <li><a href="/smg">SMG</a></li>
+                <li><a href="/sg">SG</a></li>
+                <li><a href="/sr">SR</a></li>
+                <li><a href="/lmg">LMG</a></li>
+                <li><a href="/mm">MM</a></li>
+                <li><a href="/pistol">PISTOL</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="bg"></div>
+    
+</body>
+</html>
